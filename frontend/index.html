@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Object Area AI</title><link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header><div><h1>Object Area AI</h1><p>Mark an object in a photo and calculate its area.</p></div><span id="status">Ready</span></header>
+<main>
+<section class="card controls">
+<h2>1. Add an image</h2>
+<div class="row"><button id="camera" class="primary">Use Camera</button><label class="file">Upload Image<input id="file" type="file" accept="image/*"></label></div>
+<video id="video" autoplay playsinline hidden></video>
+<div id="camControls" hidden><button id="capture" class="primary">Capture Photo</button><button id="stop">Stop Camera</button></div>
+<h2>2. Mark the object</h2><p>Use Positive to click inside the object. Use Negative to exclude unwanted areas.</p>
+<div class="row"><button id="positive" class="tool active">Positive</button><button id="negative" class="tool">Negative</button><button id="clear">Clear</button></div>
+<button id="segment" class="primary full">Segment Object & Calculate Area</button>
+<h2>3. Optional real-world calibration</h2><p>For cm², click two endpoints of a known-length reference in the image.</p>
+<input id="ref" type="number" min="0" step="0.01" placeholder="Reference length in cm">
+<button id="calibrate" class="full">Select 2 Reference Points</button>
+<button id="real" class="full" disabled>Calculate Real Area</button>
+</section>
+<section class="card workspace"><h2>Image workspace</h2><div id="wrap"><canvas id="canvas"></canvas><div id="empty"><b>◉</b><h3>Upload or capture an image</h3><p>Your image will appear here.</p></div></div><small>🟢 Positive &nbsp; 🔴 Negative &nbsp; 🟡 Reference</small></section>
+<section class="card results"><h2>Measurement</h2><div class="metric">Pixel area<strong id="pixels">—</strong><small>pixels²</small></div><div class="metric">Image coverage<strong id="coverage">—</strong><small>%</small></div><div class="metric">Real-world area<strong id="area">—</strong><small>cm²</small></div><div class="metric">AI confidence<strong id="score">—</strong></div><button id="download" class="full" disabled>Download Result</button><p id="message"></p></section>
+</main>
+<footer>Object Area AI • SAM 2 segmentation</footer>
+<script src="/static/app.js"></script>
+</body></html>
